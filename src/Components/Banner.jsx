@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import sabbir from '../assets/sabbir.JPG';
-import { NavLink } from 'react-router';
+import resumeUrl from '../assets/sabbir_resume.pdf';
+
 
 const Banner = () => {
   const [textIndex, setTextIndex] = useState(0);
@@ -137,7 +138,7 @@ const Banner = () => {
 
             {/* CTA Buttons with animations */}
             <div className="flex flex-wrap gap-6 pt-8 animate-fade-in-up animation-delay-700">
-              <NavLink to="/contact" className="group relative px-10 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 overflow-hidden">
+              <a href="#contact" className="group relative px-10 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 overflow-hidden">
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
                 <span className="relative flex items-center">
@@ -146,9 +147,13 @@ const Banner = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
-              </NavLink>
+              </a>
               
-              <button className="group relative px-10 py-4 border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:text-white font-semibold rounded-xl transition-all duration-300 overflow-hidden">
+              <a
+                href={resumeUrl}
+                download="Sabbir_Ahmed_CV.pdf"
+                className="group relative px-10 py-4 border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:text-white font-semibold rounded-xl transition-all duration-300 overflow-hidden"
+              >
                 {/* Hover background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                 <span className="relative flex items-center">
@@ -157,7 +162,7 @@ const Banner = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </span>
-              </button>
+              </a>
             </div>
 
             {/* Social Links with glow effect */}

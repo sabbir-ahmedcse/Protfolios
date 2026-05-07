@@ -10,7 +10,7 @@ import {
 
 const skills = [
     { name: "JavaScript", level: 68, icon: Code2 },
-    { name: "React.js", level: 65, icon: Atom },
+    { name: "React.js", level: 60, icon: Atom },
     { name: "Tailwind CSS", level: 66, icon: Paintbrush },
     { name: "Node.js", level: 60, icon: Server },
     { name: "Express.js", level: 58, icon: Server },
@@ -59,6 +59,7 @@ const Skills = () => {
 
     return (
         <section
+            id="skills"
             ref={sectionRef}
             className="min-h-screen px-4 py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800"
         >

@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>protfolio</title>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (savedTheme === null && prefersDark);
+        const html = document.documentElement;
+        html.dataset.theme = isDark ? 'dark' : 'light';
+        if (isDark) html.classList.add('dark');
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

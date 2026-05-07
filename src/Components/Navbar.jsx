@@ -1,53 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router';
+import { useTheme } from '../Context/ThemeContext';
 
 const Navbar = () => {
-    const [darkMode, setDarkMode] = useState(false);
+    const { darkMode, toggleDarkMode } = useTheme();
+    const [activeLink, setActiveLink] = useState(window.location.hash || '#home');
 
-    // Dark mode toggle function
-    const toggleDarkMode = () => {
-        const newDarkMode = !darkMode;
-        setDarkMode(newDarkMode);
-        if (newDarkMode) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
-    };
-
-    // Check saved theme on component mount
+    // Update active link on hash change
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            setDarkMode(true);
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        const handleHashChange = () => {
+            setActiveLink(window.location.hash || '#home');
+        };
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
     }, []);
 
     // Navigation links array for better maintainability
     const navItems = [
-        { path: "/", label: "Home" },
-        { path: "/about", label: "About" },
-        { path: "/skills", label: "Skills" },
-        { path: "/projects", label: "Projects" },
-        { path: "/contact", label: "Contact" }
+        { path: "#home", label: "Home" },
+        { path: "#about", label: "About" },
+        { path: "#skills", label: "Skills" },
+        { path: "#projects", label: "Projects" },
+        { path: "#contact", label: "Contact" }
     ];
 
     // Custom NavLink component for consistent styling
     const CustomNavLink = ({ to, children }) => (
-        <NavLink
-            to={to}
-            className={({ isActive }) =>
-                `px-4 py-2 rounded-lg transition-all duration-300 font-medium ${isActive
-                    ? 'bg-primary text-primary-content shadow-md'
-                    : 'hover:bg-base-300 hover:text-base-content'
-                }`
-            }
+        <a
+            href={to}
+            onClick={() => setActiveLink(to)}
+            className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium ${activeLink === to
+                ? 'bg-primary text-primary-content shadow-md'
+                : 'hover:bg-base-300 hover:text-base-content'
+            }`}
         >
             {children}
-        </NavLink>
+        </a>
     );
 
     return (
@@ -152,7 +139,10 @@ const Navbar = () => {
                 </button>
 
                 {/* Call to Action Button */}
-                <button className="btn btn-primary shadow-lg hover:shadow-xl transition-shadow">
+                <a
+                    href="#contact"
+                    className="btn btn-primary shadow-lg hover:shadow-xl transition-shadow"
+                >
                     Hire Me
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +156,7 @@ const Navbar = () => {
                             clipRule="evenodd"
                         />
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import { Mail, MapPin, Send } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 px-4 py-20">
+    <section id="contact" className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 px-4 py-20">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
